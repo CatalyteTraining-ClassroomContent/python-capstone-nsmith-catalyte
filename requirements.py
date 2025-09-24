@@ -156,15 +156,23 @@ def get_average_score(list_of_submissions):
     Returns:
         average of all quiz scores (float of one decimal point).
     """
-    avlist = 0
+    average = 0
     for score in list_of_submissions:
-        avlist += score["quizScore"]
-    return round(avlist / len(list_of_submissions), 1)
+        average += score["quizScore"]
+    return round(average / len(list_of_submissions), 1)
 
 
 def get_average_score_by_module(list_of_submissions):
     """ """
-    return moduel get_average_score_by_module()
+    average = 0
+    module_list = set()
+    for score in list_of_submissions:
+        if score["quizModule"] is not module_list:
+            module_list.add(score["quizModule"])
+        # average += score["quiz"]
+
+    print(module_list, round(average / len(list_of_submissions), 1))
+
 
 # filter_by_date("2023-05-20", list_of_submissions)
 # filter_by_student_id(8703, list_of_submissions)
