@@ -7,7 +7,7 @@ list_of_submissions = [
         "quizModule": "History",
         "quizScore": 99.9,
         "studentId": 8701,
-        "studentName": "Noah",
+        "studentName": "Matt",
         "submissionDate": "2023-05-20",
     },
     {
@@ -32,7 +32,31 @@ list_of_submissions = [
         "quizScore": 78.6,
         "studentId": 8704,
         "studentName": "Oscar",
+        "submissionDate": "2023-4-04",
+    },
+    {
+        "quizName": "Variables",
+        "quizModule": "Algebra",
+        "quizScore": 45.3,
+        "studentId": 8705,
+        "studentName": "Jane",
         "submissionDate": "2023-10-07",
+    },
+    {
+        "quizName": "Evolution",
+        "quizModule": "Science",
+        "quizScore": 78.6,
+        "studentId": 8706,
+        "studentName": "Jacob",
+        "submissionDate": "2023-05-20",
+    },
+    {
+        "quizName": "Revolution",
+        "quizModule": "History",
+        "quizScore": 70,
+        "studentId": 8707,
+        "studentName": "Maria",
+        "submissionDate": "2023-11-30",
     },
 ]
 studentId = 0
@@ -121,7 +145,6 @@ def find_unsubmitted(date, list_of_student_names, list_of_submissions):
     for student in list_of_student_names:
         if student not in user_chosen_names:
             unsubmitted.append(student)
-    print(unsubmitted)
     return unsubmitted
 
 
@@ -143,8 +166,8 @@ def get_average_score_by_module(list_of_submissions):
     """ """
     return moduel get_average_score_by_module()
 
-filter_by_date("2023-05-20", list_of_submissions)
-filter_by_student_id(8703, list_of_submissions)
-find_unsubmitted("2023-10-07", student_list, list_of_submissions)
-get_average_score(list_of_submissions)
+# filter_by_date("2023-05-20", list_of_submissions)
+# filter_by_student_id(8703, list_of_submissions)
+# find_unsubmitted("2023-10-07", student_list, list_of_submissions)
+# get_average_score(list_of_submissions)
 get_average_score_by_module(list_of_submissions)
