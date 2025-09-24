@@ -67,16 +67,16 @@ student_list = [
 
 def filter_by_date(date_of_submmission, list_of_submissions):
     """
-    Given I have a list of submission objects, when I call the filterByDate function with
-    a date and the list of submissions (in that order), then a list of submission objects
-    with a submissionDate equal to that date are
-        Returns:
-            Empty list if submissions are empty. Else: list of submission objects for a particular date.
+    When called returns a list of submission objects with a submissionDate equal to user date.
+
+    Parameters:
+        User chosen date and list of summission objects.
+
+    Returns:
+        Empty list if submissions are empty. Else: list of submission objects for a particular date.
     """
     if not list_of_submissions:
-        print([])
         return []
-    elif date_of_submmission
     else:
         for date in list_of_submissions:
             if date["submissionDate"] == date_of_submmission:
