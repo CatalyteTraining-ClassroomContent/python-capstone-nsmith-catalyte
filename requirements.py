@@ -163,15 +163,15 @@ def get_average_score(list_of_submissions):
 
 
 def get_average_score_by_module(list_of_submissions):
-    """ """
-    average = 0
-    module_list = set()
+    moduel_and_score = {}
     for score in list_of_submissions:
-        if score["quizModule"] is not module_list:
+        module_list = score["quizModule"]
+        score_list = score["quizScore"]
+        if score["quizModule"] not in module_list:
             module_list.add(score["quizModule"])
-        # average += score["quiz"]
+            average += score["quizScore"]
 
-    print(module_list, round(average / len(list_of_submissions), 1))
+    print(module_list, round(average / len(score_list), 1))
 
 
 # filter_by_date("2023-05-20", list_of_submissions)
