@@ -1,27 +1,6 @@
 # pascal case for class names
 # 2023-05-20 (year / month / day)
 
-# class Submission:
-
-#     def __intit__(
-#         self, quizName, quizModuel, quizScore, studentId, studentName, submissionDate
-#     ):
-#         self.score = quizName
-#         self.quizModuel = quizModuel
-#         self.quizScore = quizScore
-#         self.name = studentName
-#         self.id = studentId
-#         self.submissionDate = submissionDate
-#     def __str__(self):
-#         print("")
-# list_of_submissions = [
-#     Submission("Revolution", "History", 99.9, 8701, "Noah", "2023-05-20"),
-#     Submission("Variables", "Algebra", 89.2, 8702, "Ivan", "2023-03-16"),
-#     Submission("Shakespear", "English", 30.5, 8703, "Ricky", "2023-01-29"),
-#     Submission("Evolution", "Science", 78.6, 8704, "Oscar", "2023-10-07"),
-# ]
-
-
 list_of_submissions = [
     {
         "quizName": "Revolution",
@@ -57,25 +36,37 @@ list_of_submissions = [
     },
 ]
 studentId = 0
+student_list = [
+    "Noah",
+    "Ivan",
+    "Ricky",
+    "Oscar",
+]
 
-# def filter_by_date(date_of_submmission, list_of_submissions):
-#     """
-#     Given I have a list of submission objects, when I call the filterByDate function with
-#     a date and the list of submissions (in that order), then a list of submission objects
-#     with a submissionDate equal to that date are
-#         Returns:
-#             List of submission objects for a particular date.
-#     """
-#     for date in list_of_submissions:
-#         if date["submissionDate"] == date_of_submmission:
-#             return (
-#                 date["quizName"],
-#                 date["quizModule"],
-#                 date["quizScore"],
-#                 date["studentId"],
-#                 date["studentName"],
-#                 date["submissionDate"],
-#             )
+
+def filter_by_date(date_of_submmission, list_of_submissions):
+    """
+    Given I have a list of submission objects, when I call the filterByDate function with
+    a date and the list of submissions (in that order), then a list of submission objects
+    with a submissionDate equal to that date are
+        Returns:
+            List of submission objects for a particular date.
+    """
+    if not list_of_submissions:
+        return []
+    else:
+        for date in list_of_submissions:
+            if date["submissionDate"] == date_of_submmission:
+                return (
+                    date["studentName"],
+                    date["quizName"],
+                    date["quizModule"],
+                    date["quizScore"],
+                    date["studentId"],
+                    date["submissionDate"],
+                )
+            else:
+                return []
 
 
 def filter_by_student_id(studentId, list_of_submissions):
@@ -94,50 +85,66 @@ def filter_by_student_id(studentId, list_of_submissions):
             If the list is empty, or the filter_by_student_id feature does not find any results return empty list. Otherwise return all
     submissions for a particular student.
     """
-    if studentId or not list_of_submissions:
-        print([])
+    if not studentId or not list_of_submissions:
         return []
     else:
-        for studentId in list_of_submissions:
-            if studentId == list_of_submissions.id:
-                return
+        for id in list_of_submissions:
+            if id["studentId"] == studentId:
+                return (
+                    id["studentName"],
+                    id["quizName"],
+                    id["quizModule"],
+                    id["quizScore"],
+                    id["studentId"],
+                    id["submissionDate"],
+                )
 
 
-# def find_unsubmitted(date, list_of_student_names, list_of_submissions):
-#     """
-#     Given I have a list of submission objects, when I supply a date, a list of student
-#     names, and a list of submission objects (in that order) to the find_unsubmitted
-#     function, then I am returned a list of names of students that have not completed
-#     any quiz on that date.
-#     2. Given that the find unsubmitted feature does not find any student names, I am
-#     returned an empty list.
-#     """
-#     unsubmitted_names = []
-#     return "list of names of students that have not completed any quiz on that date." unsubmitted_names
+def find_unsubmitted(date, list_of_student_names, list_of_submissions):
+    """
+    Given I have a list of submission objects, when I supply a date, a list of student
+    names, and a list of submission objects to the find_unsubmitted
+    function, then I am returned a list of names of students that have not completed
+    any quiz on that date.
+    2. Given that the find unsubmitted feature does not find any student names, I am
+    returned an empty list.
+    returns:
+    "names of students that have not completed any quiz on that date."
+    """
+    if not list_of_student_names:
+        return []
+    user_chosen_names = set()
+    for submission in list_of_submissions:
+        if submission["submissionDate"] == date:
+            user_chosen_names.add(submission["studentName"])
+    unsubmitted = []
+    for student in list_of_student_names:
+        if student not in user_chosen_names:
+            unsubmitted.append(student)
+    print(unsubmitted)
+    return unsubmitted
 
 
-# def get_average_score(list_of_submissions):
-#     """
-#     From a list of submission objects find the average of all the quiz scores.
+def get_average_score(list_of_submissions):
+    """
+    From a list of submission objects find the average of all the quiz scores.
+    Parameters:
+        list of submissions
+    Returns:
+        average of all quiz scores (float of one decimal point).
+    """
+    avlist = 0
+    for score in list_of_submissions:
+        avlist += score["quizScore"]
+    return round(avlist / len(list_of_submissions), 1)
 
-#     Parameters:
-#         list of submissions
 
-#     Returns:
-#         average of all quiz scores (float of one decimal point).
+def get_average_score_by_module(list_of_submissions):
+    """ """
+    return moduel get_average_score_by_module()
 
-#     """
-#     quizScore / len(quizScore)
-#     return average_score "float"
-
-
-# def get_average_score_by_module(list_of_submissions):
-#     """ """
-
-#     return moduel get_average_score_by_module()
-
-# filter_by_date("2023-05-20", list_of_submissions)
+filter_by_date("2023-05-20", list_of_submissions)
 filter_by_student_id(8703, list_of_submissions)
-# find_unsubmitted(date, list_of_student_names, list_of_submissions)
-# get_average_score(list_of_submissions)
-# get_average_score_by_module(list_of_submissions)
+find_unsubmitted("2023-10-07", student_list, list_of_submissions)
+get_average_score(list_of_submissions)
+get_average_score_by_module(list_of_submissions)
