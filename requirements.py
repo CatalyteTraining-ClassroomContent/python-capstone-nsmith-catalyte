@@ -1,6 +1,3 @@
-# pascal case for class names
-# 2023-05-20 (year / month / day)
-
 list_of_submissions = [
     {
         "quizName": "Revolution",
@@ -74,10 +71,12 @@ def filter_by_date(date_of_submmission, list_of_submissions):
     a date and the list of submissions (in that order), then a list of submission objects
     with a submissionDate equal to that date are
         Returns:
-            List of submission objects for a particular date.
+            Empty list if submissions are empty. Else: list of submission objects for a particular date.
     """
     if not list_of_submissions:
+        print([])
         return []
+    elif date_of_submmission
     else:
         for date in list_of_submissions:
             if date["submissionDate"] == date_of_submmission:
@@ -163,19 +162,22 @@ def get_average_score(list_of_submissions):
 
 
 def get_average_score_by_module(list_of_submissions):
-    moduel_and_score = {}
-    for score in list_of_submissions:
-        module_list = score["quizModule"]
-        score_list = score["quizScore"]
-        if score["quizModule"] not in module_list:
-            module_list.add(score["quizModule"])
-            average += score["quizScore"]
+    module_scores = {}
+    for submission in list_of_submissions:
+        module = submission["quizModule"]
+        score = submission["quizScore"]
+        if module not in module_scores:
+            module_scores[module] = []
 
-    print(module_list, round(average / len(score_list), 1))
+        module_scores[module].append(score)
+
+    for module, scores in module_scores.items():
+        average = sum(scores) / len(scores)
+        print(f"{module}: {round(average, 1)}")
 
 
-# filter_by_date("2023-05-20", list_of_submissions)
+filter_by_date("2023-05-20", list_of_submissions)
 # filter_by_student_id(8703, list_of_submissions)
 # find_unsubmitted("2023-10-07", student_list, list_of_submissions)
 # get_average_score(list_of_submissions)
-get_average_score_by_module(list_of_submissions)
+# get_average_score_by_module(list_of_submissions)
