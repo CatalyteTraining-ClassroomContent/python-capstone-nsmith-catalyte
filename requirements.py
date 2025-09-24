@@ -73,42 +73,33 @@ def filter_by_date(date_of_submmission, list_of_submissions):
         User chosen date and list of summission objects.
 
     Returns:
-        Empty list if submissions are empty. Else: list of submission objects for a particular date.
+        Empty list if submissions are empty or date is not found. Else: list of submission objects for a particular date.
     """
     if not list_of_submissions:
         return []
-    else:
-        for date in list_of_submissions:
-            if date["submissionDate"] == date_of_submmission:
-                return (
-                    date["studentName"],
-                    date["quizName"],
-                    date["quizModule"],
-                    date["quizScore"],
-                    date["studentId"],
-                    date["submissionDate"],
-                )
-            else:
-                return []
+    for date in list_of_submissions:
+        if date["submissionDate"] == date_of_submmission:
+            return (
+                date["studentName"],
+                date["quizName"],
+                date["quizModule"],
+                date["quizScore"],
+                date["studentId"],
+                date["submissionDate"],
+            )
+        else:
+            return []
 
 
 def filter_by_student_id(studentId, list_of_submissions):
     """
-        Given I have a list of submission objects, when I supply a studentId and the list (in
-    that order) to the filter_by_student_id function, then submission objects with a
-    studentId equal to the studentId I supplied are returned to me, so I can see all
-    submissions for a particular student.
-    2. Given I have supplied a studentId and a list of submission objects (in that order),
-    when the list is empty, or the filter_by_student_id feature does not find any results,
-    then I am returned an empty list.
-
-        Parameters:
-            Student id and list of submissions.
-        Returns:
-            If the list is empty, or the filter_by_student_id feature does not find any results return empty list. Otherwise return all
-    submissions for a particular student.
+    Gets submission objects based on date.
+    Parameters:
+        Student id and a list of submissions.
+    Returns:
+        Empty list if submission list is empty, or studentId does not find any results. Otherwise returns all submissions for a particular student.
     """
-    if not studentId or not list_of_submissions:
+    if not list_of_submissions:
         return []
     else:
         for id in list_of_submissions:
@@ -121,6 +112,8 @@ def filter_by_student_id(studentId, list_of_submissions):
                     id["studentId"],
                     id["submissionDate"],
                 )
+            else:
+                return []
 
 
 def find_unsubmitted(date, list_of_student_names, list_of_submissions):
@@ -177,7 +170,7 @@ def get_average_score_by_module(list_of_submissions):
 
 
 filter_by_date("2023-05-20", list_of_submissions)
-# filter_by_student_id(8703, list_of_submissions)
+filter_by_student_id(8703, list_of_submissions)
 # find_unsubmitted("2023-10-07", student_list, list_of_submissions)
 # get_average_score(list_of_submissions)
 # get_average_score_by_module(list_of_submissions)
