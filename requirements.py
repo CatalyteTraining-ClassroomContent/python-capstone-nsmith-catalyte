@@ -165,7 +165,7 @@ def get_average_score_by_module(list_of_submissions):
         List of submissions.
 
     Returns:
-        Average of all quiz scores (float of one decimal point) for each quiz name.
+        Object of all quiz scores (float of one decimal point) for each quiz name.
     """
     module_scores = {}
     for submission in list_of_submissions:
@@ -174,9 +174,11 @@ def get_average_score_by_module(list_of_submissions):
         if module not in module_scores:
             module_scores[module] = []
         module_scores[module].append(score)
-    for module, scores in module_scores.items():
-        average = sum(scores) / len(scores)
-        return f"{module}: {round(average, 1)}"
+    average_by_module = {
+        module: round(sum(scores) / len(scores), 1)
+        for module, scores in module_scores.items()
+    }
+    return average_by_module
 
 
 filter_by_date("2023-05-20", list_of_submissions)
