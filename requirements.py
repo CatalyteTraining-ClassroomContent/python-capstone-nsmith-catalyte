@@ -94,8 +94,10 @@ def filter_by_date(date_of_submmission, list_of_submissions):
 def filter_by_student_id(studentId, list_of_submissions):
     """
     Gets submission objects based on date.
+
     Parameters:
         Student id and a list of submissions.
+
     Returns:
         Empty list if submission list is empty, or studentId does not find any results. Otherwise returns all submissions for a particular student.
     """
@@ -119,8 +121,10 @@ def filter_by_student_id(studentId, list_of_submissions):
 def find_unsubmitted(date, list_of_student_names, list_of_submissions):
     """
     Gives list of students that have not completed any quiz on the date.
+
     parameters:
-        date for seach, list of names, list of submission objects
+        Date for seach, list of names, list of submission objects.
+
     returns:
         Names of students that have not completed any quiz on given date.
     """
@@ -140,10 +144,12 @@ def find_unsubmitted(date, list_of_student_names, list_of_submissions):
 def get_average_score(list_of_submissions):
     """
     From a list of submission objects find the average of all the quiz scores.
+
     Parameters:
-        list of submissions
+        List of submissions.
+
     Returns:
-        average of all quiz scores (float of one decimal point).
+        Average of all quiz scores (float of one decimal point).
     """
     average = 0
     for score in list_of_submissions:
@@ -152,21 +158,29 @@ def get_average_score(list_of_submissions):
 
 
 def get_average_score_by_module(list_of_submissions):
+    """
+    Finds the average of all quiz scores from the same "quizModule".
+
+    Parameters:
+        List of submissions.
+
+    Returns:
+        Average of all quiz scores (float of one decimal point) for each quiz name.
+    """
     module_scores = {}
     for submission in list_of_submissions:
         module = submission["quizModule"]
         score = submission["quizScore"]
         if module not in module_scores:
             module_scores[module] = []
-
         module_scores[module].append(score)
     for module, scores in module_scores.items():
         average = sum(scores) / len(scores)
-        print(f"{module}: {round(average, 1)}")
+        return f"{module}: {round(average, 1)}"
 
 
-# filter_by_date("2023-05-20", list_of_submissions)
-# filter_by_student_id(8703, list_of_submissions)
-# find_unsubmitted("2023-10-07", student_list, list_of_submissions)
-# get_average_score(list_of_submissions)
+filter_by_date("2023-05-20", list_of_submissions)
+filter_by_student_id(8703, list_of_submissions)
+find_unsubmitted("2023-10-07", student_list, list_of_submissions)
+get_average_score(list_of_submissions)
 get_average_score_by_module(list_of_submissions)
