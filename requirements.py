@@ -118,14 +118,11 @@ def filter_by_student_id(studentId, list_of_submissions):
 
 def find_unsubmitted(date, list_of_student_names, list_of_submissions):
     """
-    Given I have a list of submission objects, when I supply a date, a list of student
-    names, and a list of submission objects to the find_unsubmitted
-    function, then I am returned a list of names of students that have not completed
-    any quiz on that date.
-    2. Given that the find unsubmitted feature does not find any student names, I am
-    returned an empty list.
+    Gives list of students that have not completed any quiz on the date.
+    parameters:
+        date for seach, list of names, list of submission objects
     returns:
-    "names of students that have not completed any quiz on that date."
+        Names of students that have not completed any quiz on given date.
     """
     if not list_of_student_names:
         return []
@@ -163,14 +160,13 @@ def get_average_score_by_module(list_of_submissions):
             module_scores[module] = []
 
         module_scores[module].append(score)
-
     for module, scores in module_scores.items():
         average = sum(scores) / len(scores)
         print(f"{module}: {round(average, 1)}")
 
 
-filter_by_date("2023-05-20", list_of_submissions)
-filter_by_student_id(8703, list_of_submissions)
+# filter_by_date("2023-05-20", list_of_submissions)
+# filter_by_student_id(8703, list_of_submissions)
 # find_unsubmitted("2023-10-07", student_list, list_of_submissions)
 # get_average_score(list_of_submissions)
-# get_average_score_by_module(list_of_submissions)
+get_average_score_by_module(list_of_submissions)
