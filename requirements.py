@@ -16,7 +16,7 @@ list_of_submissions = [
         "submissionDate": "2023-03-16",
     },
     {
-        "quizName": "Shakspeare",
+        "quizName": "Shakespeare",
         "quizModule": "English",
         "quizScore": 30.5,
         "studentId": 8703,
@@ -87,8 +87,8 @@ def filter_by_date(date_of_submmission, list_of_submissions):
                 date["studentId"],
                 date["submissionDate"],
             )
-        else:
-            return []
+    else:
+        return []
 
 
 def filter_by_student_id(studentId, list_of_submissions):
@@ -101,6 +101,9 @@ def filter_by_student_id(studentId, list_of_submissions):
     Returns:
         Empty list if submission list is empty, or studentId does not find any results. Otherwise returns all submissions for a particular student.
     """
+
+
+def filter_by_student_id(studentId, list_of_submissions):
     if not list_of_submissions:
         return []
     else:
@@ -114,8 +117,8 @@ def filter_by_student_id(studentId, list_of_submissions):
                     id["studentId"],
                     id["submissionDate"],
                 )
-            else:
-                return []
+        else:
+            return []
 
 
 def find_unsubmitted(date, list_of_student_names, list_of_submissions):
@@ -182,7 +185,7 @@ def get_average_score_by_module(list_of_submissions):
 
 
 filter_by_date("2023-05-20", list_of_submissions)
-filter_by_student_id(8703, list_of_submissions)
+filter_by_student_id(8708, list_of_submissions)
 find_unsubmitted("2023-10-07", student_list, list_of_submissions)
 get_average_score(list_of_submissions)
 get_average_score_by_module(list_of_submissions)
